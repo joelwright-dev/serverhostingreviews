@@ -9,7 +9,9 @@ import {
   Navbar,
   Burger,
   MediaQuery,
+  Text,
   Anchor,
+  Footer,
   useMantineColorScheme,
   useMantineTheme,
   Group,
@@ -44,6 +46,23 @@ const Layout = ({children, currentPage}) => {
   return (
     <AppShell
       fixed
+      footer={
+        <Footer height={60} p="md">
+          <Group position="apart">
+            <Text
+              variant="gradient"
+              gradient={{ from: 'purple', to: 'pink', deg: 45 }}
+              size="md"
+              weight={700}
+            >
+              Server Hosting Reviews
+            </Text>
+            <Text size="xs" weight={400}>
+              Find the best server host for your game server.
+            </Text>
+          </Group>
+        </Footer>
+      }
       header={
         <Header height={60} p="md">
           <div style={{display: 'flex', justifyContent: "space-between"}}>
