@@ -36,7 +36,7 @@ export default function Game(props) {
                         }
                     </Group>
                     <Text size="sm" lineClamp={1} style={{ lineHeight: 1.5 }}>
-                        {props.review.body}
+                        {props.review.description}
                     </Text>
                     <Link href={props.review.href}>
                         <Button variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}} fullWidth style={{ marginTop: 14 }}>

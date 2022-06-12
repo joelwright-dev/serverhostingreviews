@@ -22,9 +22,11 @@ const reviews = () => {
     title: 'A review',
     button: 'Read about Shockbyte hosting!',
     stars: 4,
-    body: 'Shockbyte hostign has been around for blah blah and overs blah blah amount of servers, if you like hosting servers for your friends, or just want to try it out, Shockbyte is the place for you.',
+    description: 'Shockbyte hostign has been around for blah blah and overs blah blah amount of servers, if you like hosting servers for your friends, or just want to try it out, Shockbyte is the place for you.',
+    body: '<p>test</p>',
     banner: '<a href="https://shockbyte.com/billing/aff.php?aff=3047"><img src="https://shockbyte.com/assets/img/partners/twitch/shockbyte_affiliate.png" alt="Minecraft Server Hosting" height="115"/></a>',
-    href: '/'
+    href: 'reviews/shockbyte',
+    title: 'shockbyte'
   }
 
   return (
