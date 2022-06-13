@@ -2,8 +2,20 @@ import React from 'react'
 import parse from 'html-react-parser'
 import { Card, Grid, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
 import Link from 'next/link'
+import prisma from '../../lib/prisma'
 
-const Review = () => {
+export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+  const post = await prisma.review.findUnique({
+    where: {
+      id: parseInt(resolvedUrl.slice(9)),
+    },
+  });
+  return {
+    props: {},
+  };
+};
+
+const Review = (props) => {
   const review = {
     title: 'Shockbyte Server Hosting - A Comprehensive Review',
     button: 'Read about Shockbyte hosting!',
@@ -11,17 +23,17 @@ const Review = () => {
     description: 'Shockbyte hostign has been around for blah blah and overs blah blah amount of servers, if you like hosting servers for your friends, or just want to try it out, Shockbyte is the place for you.',
     colors: ['blue', 'blue'],
     body: [
-      ['hero','https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg'],
-      ['title','Overview of Shockbyte Hosting'],
-      ['description'],
-      ['body', 'Body content'],
-      ['banner'],
-      ['title', 'A bruh moment to be sure'],
-      ['reviews', [['Really good', 'Jimbo'], ['Incredible', 'Jeff'], ['Sick', 'Chad'], ['Based', 'Giga Chad']]],
-      ['body', 'More body content'],
-      ['button']
+      ["hero","https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg"],
+      ["title","Overview of Shockbyte Hosting"],
+      ["description"],
+      ["body", "Body content"],
+      ["banner"],
+      ["title", "A bruh moment to be sure"],
+      ["reviews", [["Really good", "Jimbo"], ["Incredible", "Jeff"], ["Sick", "Chad"], ["Based", "Giga Chad"]]],
+      ["body", "More body content"],
+      ["button"]
     ],
-    banner: ['https://shockbyte.com/billing/aff.php?aff=3047', 'https://shockbyte.com/assets/img/partners/twitch/shockbyte_affiliate.png'],
+    banner: ["https://shockbyte.com/billing/aff.php?aff=3047", "https://shockbyte.com/assets/img/partners/twitch/shockbyte_affiliate.png"],
     href: 'reviews/shockbyte'
   }
 

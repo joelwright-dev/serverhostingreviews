@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+  title String @unique
+  description String
+  button String
+  stars Int
+  colors Json
+  body Json
+  banner Json
+  href String
+}
