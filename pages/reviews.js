@@ -19,6 +19,7 @@ import Link from 'next/link'
 const reviews = () => {
 
   const review = {
+    id: 1,
     title: 'A review',
     button: 'Read about Shockbyte hosting!',
     stars: 4,

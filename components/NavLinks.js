@@ -33,7 +33,7 @@ function SideLink({ icon, color, label, href, currentPage }) {
             >
               <Group>
                   {
-                    currentPage.replace('/','') == href ? (
+                    currentPage.replace('/','') == href || currentPage.slice(1,8) == href ? (
                       <>
                         <ThemeIcon variant="gradient" gradient={{ from: 'pink', to: 'purple', deg: 45 }}>
                           {icon}
@@ -87,7 +87,7 @@ function MainLink({ icon, color, label, href, currentPage }) {
             })}
           >
             {
-              currentPage.replace('/','') == href ? (
+              currentPage.replace('/','') == href || currentPage.slice(1,8) == href ? (
                 <Text 
                   size="sm"
                   variant="gradient"
