@@ -4,29 +4,24 @@ import { createHash } from 'crypto'
 // import { PrismaClient } from '@prisma/client'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function Home (props) {
-    const [admin, setAdmin] = useState()
+    const [users, setUsers] = useState()
+    const router = useRouter()
 
-    // useEffect(() => {
-    //     fetch('api/user').then(
-    //         (res) => res.json())
-    //         .then((user) => {
-    //             setAdmin(user)
-    //             console.log(admin)
-    //         }
-    //     )
-    // }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-    // const router = useRouter()
-
-    // if(props.user !== 0) {
-    //     router.push('/home')
-    // }
+    useEffect(() => {
+        fetch('api/users').then(
+            (res) => res.json())
+            .then((user) => {
+                setUsers(user)
+            }
+        )
+    }, [users]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const form = useForm({
         initialValues: {
-            id: '',
+            username: '',
             password: ''
         },
     });
@@ -37,7 +32,7 @@ export default function Home (props) {
         console.log(authenticated)
 
         if(authenticated.status == 200) {
-            router.push('home')
+            router.push('create')
         } else {
             console.log("something went wrong")
         }
@@ -48,25 +43,18 @@ export default function Home (props) {
             <Card shadow="sm" p="lg">
                 <form onSubmit={form.onSubmit((values) => {
                     const user = {
-                        student_id: values.id.replace('s',''),
+                        username: values.username,
                         password: createHash('sha256').update(values.password).digest('hex')
                     }
 
-                    if(students) {
-                        students.map((users) => {
-                            if(users.student_id == user.student_id) {
+                    if(users) {
+                        users.map((users) => {
+                            if(users.username == user.username) {
                                 if(users.password == user.password) {
                                     const thisUser = {
-                                        id: user.student_id,
-                                        code: "",
-                                        firstname: users.firstname,
-                                        surname: users.surname,
-                                        isStudent: true,
-                                        isParent: false
+                                        id: users.id,
+                                        username: user.username
                                     }
-
-                                    console.log(thisUser)
-
                                     handleLogin(thisUser)
                                 } else {
                                     console.log("Incorrect password")

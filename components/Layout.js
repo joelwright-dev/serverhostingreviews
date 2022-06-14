@@ -37,7 +37,7 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-const Layout = ({children, currentPage}) => {
+const Layout = ({children, currentPage, user}) => {
   const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -68,8 +68,14 @@ const Layout = ({children, currentPage}) => {
           <div style={{display: 'flex', justifyContent: "space-between"}}>
             <Group position="apart" style={{width: '100%'}}>
               <Logo/>
-              <div className={classes.links}>
-                <LinksAcross currentPage={currentPage}/>
+              <div className={classes.links}> 
+                {
+                  user !== 0 ? (
+                    <LinksAcross currentPage={currentPage} admin={true}/>
+                  ) : (
+                    <LinksAcross currentPage={currentPage}/>
+                  )
+                }
               </div>
             </Group>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>

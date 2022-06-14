@@ -7,6 +7,22 @@ import {useRouter} from 'next/router';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
+  const [user, setUser] = useState(0)
+
+  useEffect(() => {
+      try {
+          fetch('api/auth/verify')
+          .then((res) => res.json())
+          .then((newUser) => {
+              setUser(newUser)
+          }).catch((err) => {
+              setUser(0)
+          })
+      } catch {
+          setUser(0)
+      }
+  }, [user])
+
   return (
     <>
       <Meta/>
@@ -18,8 +34,8 @@ export default function App({ Component, pageProps }) {
             primaryColor: 'blue'
           }}
         >
-          <Layout currentPage={router.pathname}>
-            <Component {...pageProps} />
+          <Layout currentPage={router.pathname} user={user}>
+            <Component {...pageProps}/>
           </Layout>
         </MantineProvider>
       </ColorSchemeProvider>

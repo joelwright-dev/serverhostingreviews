@@ -111,17 +111,34 @@ const Pagedata = [
     { icon: <InfoCircle size={16} />, color: 'teal', label: 'About', href: 'about' },
     { icon: <Book2 size={16} />, color: 'violet', label: 'Reviews', href: 'reviews' },
 ];
+
+const Admindata = [
+  { icon: <Home size={16} />, color: 'blue', label: 'Home', href: '' },
+  { icon: <InfoCircle size={16} />, color: 'teal', label: 'About', href: 'about' },
+  { icon: <Book2 size={16} />, color: 'violet', label: 'Reviews', href: 'reviews' },
+  { icon: <Book2 size={16} />, color: 'violet', label: 'Create', href: 'create' },
+  { icon: <Book2 size={16} />, color: 'violet', label: 'Logout', href: 'logout' },
+];
   
-export function LinksDown({currentPage}) {
+export function LinksDown({currentPage, admin}) {
   const links = Pagedata.map((link) => 
     <SideLink {...link} currentPage={currentPage} key={link.label} />
   );
   return <div>{links}</div>;
 }
 
-export function LinksAcross({currentPage}) {
+export function LinksAcross({currentPage, admin}) {
+  if(admin) {
+    const links = Admindata.map((link) => 
+      <MainLink {...link} currentPage={currentPage} key={link.label}/>
+    );
+
+    return <div style={{display:'flex',flexDirection: 'row',float:'right'}}>{links}</div>;
+  } else {
     const links = Pagedata.map((link) => 
       <MainLink {...link} currentPage={currentPage} key={link.label}/>
     );
+
     return <div style={{display:'flex',flexDirection: 'row',float:'right'}}>{links}</div>;
   }
+}

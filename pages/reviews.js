@@ -18,7 +18,11 @@ import Link from 'next/link'
 import prisma from '../lib/prisma'
 
 export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-  const reviews = await prisma.review.findMany();
+  const reviews = await prisma.review.findMany({
+    where: {
+      public: true
+    }
+  });
 
   return {
     props: {reviews},
