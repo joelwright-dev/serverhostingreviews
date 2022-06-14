@@ -15,21 +15,17 @@ import {
 import Review from '../components/Review'
 import Logo from '../components/Logo'
 import Link from 'next/link'
+import prisma from '../lib/prisma'
 
-const reviews = () => {
+export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+  const reviews = await prisma.review.findMany();
 
-  const review = {
-    id: 1,
-    title: 'A review',
-    button: 'Read about Shockbyte hosting!',
-    stars: 4,
-    description: 'Shockbyte hostign has been around for blah blah and overs blah blah amount of servers, if you like hosting servers for your friends, or just want to try it out, Shockbyte is the place for you.',
-    body: '<p>test</p>',
-    banner: '<a href="https://shockbyte.com/billing/aff.php?aff=3047"><img src="https://shockbyte.com/assets/img/partners/twitch/shockbyte_affiliate.png" alt="Minecraft Server Hosting" height="115"/></a>',
-    href: 'reviews/shockbyte',
-    title: 'shockbyte'
-  }
+  return {
+    props: {reviews},
+  };
+};
 
+const reviews = ({reviews}) => {
   return (
     <>
       <Group position="center" direction="column">
@@ -50,37 +46,16 @@ const reviews = () => {
           </Title>
           <Text align="center">Are you looking to host a game server for you and your friends? Look no further.</Text>
         </Group> 
-        <Grid style={{width: '90%'}}>
-          <Grid.Col md={6} lg={4}  style={{ minHeight: 120 }}>
-            <Review
-              review={review}
-            />
-          </Grid.Col>
-          <Grid.Col md={6} lg={4}>
-          <Review
-              review={review}
-            />
-          </Grid.Col>
-          <Grid.Col md={6} lg={4}>
-            <Review
-              review={review}
-            />
-          </Grid.Col>
-          <Grid.Col md={6} lg={4}>
-            <Review
-              review={review}
-            />
-          </Grid.Col>
-          <Grid.Col md={6} lg={4}>
-            <Review
-              review={review}
-            />
-          </Grid.Col>
-          <Grid.Col md={6} lg={4}>
-            <Review
-              review={review}
-            />
-          </Grid.Col>
+        <Grid style={{width: '90%'}} columns={2}>
+          {reviews.map((review, index) => {
+            return (
+              <Grid.Col md={2} lg={1}  style={{ minHeight: 120 }} key={index}>
+                <Review
+                  review={review}
+                />
+              </Grid.Col>
+            )
+          })}
         </Grid>
       </Group>
     </>

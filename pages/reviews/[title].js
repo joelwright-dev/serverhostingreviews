@@ -2,41 +2,27 @@ import React from 'react'
 import parse from 'html-react-parser'
 import { Card, Grid, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
 import Link from 'next/link'
-// import prisma from '../../lib/prisma'
+import prisma from '../../lib/prisma'
 
-// export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-//   const post = await prisma.review.findUnique({
-//     where: {
-//       id: parseInt(resolvedUrl.slice(9)),
-//     },
-//   });
-//   return {
-//     props: {},
-//   };
-// };
+export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+  const review = await prisma.review.findUnique({
+    where: {
+      id: parseInt(resolvedUrl.slice(9)),
+    },
+  });
 
-const Review = () => {
-  const review = {
-    id: 1,
-    title: 'Minecraft Server Hosting',
-    button: 'Find The Perfect Minecraft Server Host!',
-    description: "Minecraft is a sandbox game developed by Mojang which empowers player creativity and collaboration. Minecraft has been ported to multiple platforms including Windows, macOS, Linux, iOS, Android and Console. Players can join their friends on servers run using Minecraft's server tools, however paying for a cheap host may suit you better as you can run your server 24/7 and take the hastle out of all the setup.",
-    colors: ['blue', 'blue'],
-    body: [
-      ["hero","https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg"],
-      ["title","What is a Minecraft Server?"],
-      ["description"],
-      ["body", "Body content"],
-      ["banner"],
-      ["title", "A bruh moment to be sure"],
-      ["reviews", [["Really good", "Jimbo"], ["Incredible", "Jeff"], ["Sick", "Chad"], ["Based", "Giga Chad"]]],
-      ["body", "More body content"],
-      ["button"]
-    ],
-    banner: ["https://shockbyte.com/billing/aff.php?aff=3047", "https://shockbyte.com/assets/img/partners/twitch/shockbyte_affiliate.png"],
-    href: 'reviews/shockbyte'
+  if (!review) {
+    return {
+      notFound: true
+    }
   }
 
+  return {
+    props: {review},
+  };
+};
+
+const Review = ({review}) => {
   return (
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
       {
