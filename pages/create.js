@@ -1,4 +1,4 @@
-import { Button, Center, TextInput, Textarea, Group, Tabs, Card } from '@mantine/core'
+import { Button, Center, JsonInput, TextInput, Textarea, Group, Tabs, Card } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { createHash } from 'crypto'
 // import { PrismaClient } from '@prisma/client'
@@ -84,11 +84,11 @@ export default function Home (props) {
                 <TextInput placeholder="Title" label="Title" required {...form.getInputProps('title')}/>
                 <Textarea placeholder="Description" label="Description" required {...form.getInputProps('description')}/>
                 <TextInput placeholder="Button Text" label="Button Text" required {...form.getInputProps('button')}/>
-                <Group grow>
-                    <TextInput placeholder="Color 1" label="Color 1" required {...form.getInputProps('color1')}/>
-                    <TextInput placeholder="Color 2" label="Color 2" required {...form.getInputProps('color2')}/>
-                </Group>
-                <Button type="submit" variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}}>Login</Button>
+                <JsonInput label="Colors" placeholder="[Color 1, Color 2]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} {...form.getInputProps('colors')}/>
+                <JsonInput label="Body" placeholder="[[Type, Content]]" validationError="Invalid JSON" formatOnBlur autosize minRows={3} {...form.getInputProps('body')}/>
+                <JsonInput label="Banner" placeholder="[Image Source, Image URL]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} {...form.getInputProps('banner')}/>
+                <TextInput placeholder="href" label="Button Link" required {...form.getInputProps('href')}/>
+                <Button type="submit" variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}}>Upload Review (Draft)</Button>
             </Group>
         </form>
     )

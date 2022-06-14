@@ -5,9 +5,10 @@ import Link from 'next/link'
 import prisma from '../../lib/prisma'
 
 export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-  const review = await prisma.review.findUnique({
+  const review = await prisma.review.findFirst({
     where: {
       id: parseInt(resolvedUrl.slice(9)),
+      public: true
     },
   });
 
