@@ -12,6 +12,8 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
     },
   });
 
+  console.log(review)
+
   if (!review) {
     return {
       notFound: true

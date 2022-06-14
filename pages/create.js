@@ -1,4 +1,4 @@
-import { Button, Center, JsonInput, TextInput, Textarea, Group, Tabs, Card } from '@mantine/core'
+import { Button, Center, NumberInput, JsonInput, TextInput, Textarea, Group, Tabs, Card } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { createHash } from 'crypto'
 // import { PrismaClient } from '@prisma/client'
@@ -27,6 +27,7 @@ export default function Home (props) {
             title: '',
             button: '',
             description: '',
+            stars: 0,
             colors: [],
             body: [],
             banner: [],
@@ -34,59 +35,44 @@ export default function Home (props) {
         },
     });
 
-    const handleLogin = async (user) => {
-        const authenticated = await axios.post('/api/auth/login', user)
-        
-        console.log(authenticated)
-
-        if(authenticated.status == 200) {
-            router.push('home')
-        } else {
-            console.log("something went wrong")
+    const post = async (review) => {
+        try {
+            await fetch('/api/post', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(review)
+            })
+            await Router.push('reviews')
+        } catch (error) {
+            console.log(error)
         }
     }
 
     return(
         <form onSubmit={form.onSubmit((values) => {
-            const user = {
-                student_id: values.id.replace('s',''),
-                password: createHash('sha256').update(values.password).digest('hex')
-            }
-
-            if(students) {
-                students.map((users) => {
-                    if(users.student_id == user.student_id) {
-                        if(users.password == user.password) {
-                            const thisUser = {
-                                id: user.student_id,
-                                code: "",
-                                firstname: users.firstname,
-                                surname: users.surname,
-                                isStudent: true,
-                                isParent: false
-                            }
-
-                            console.log(thisUser)
-
-                            handleLogin(thisUser)
-                        } else {
-                            console.log("Incorrect password")
-                        }
-                    } else {
-                        console.log("Don't authenticate")
-                    }
-                })
+            const review = {
+                title: values.title,
+                button: values.button,
+                description: values.description,
+                stars: values.stars,
+                colors: JSON.parse(values.colors),
+                body: JSON.parse(values.body),
+                banner: JSON.parse(values.banner),
+                href: values.href
             }
             
-            console.log(user)
+            post(review)
         })}>
             <Group direction="column" grow>
-                <TextInput placeholder="Title" label="Title" required {...form.getInputProps('title')}/>
+                <Group grow>
+                    <TextInput placeholder="Title" label="Title" required {...form.getInputProps('title')}/>
+                    <NumberInput defaultValue={0} label="Star Rating" required {...form.getInputProps('stars')} max={5} min={0}/>
+                </Group>
                 <Textarea placeholder="Description" label="Description" required {...form.getInputProps('description')}/>
                 <TextInput placeholder="Button Text" label="Button Text" required {...form.getInputProps('button')}/>
-                <JsonInput label="Colors" placeholder="[Color 1, Color 2]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} {...form.getInputProps('colors')}/>
-                <JsonInput label="Body" placeholder="[[Type, Content]]" validationError="Invalid JSON" formatOnBlur autosize minRows={3} {...form.getInputProps('body')}/>
-                <JsonInput label="Banner" placeholder="[Image Source, Image URL]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} {...form.getInputProps('banner')}/>
+                <JsonInput label="Colors" placeholder="[Color 1, Color 2]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} required {...form.getInputProps('colors')}/>
+                <JsonInput label="Body" placeholder="[[Type, Content]]" validationError="Invalid JSON" formatOnBlur autosize minRows={3} required {...form.getInputProps('body')}/>
+                <JsonInput label="Banner" placeholder="[Affiliate Link, Image Source]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} required {...form.getInputProps('banner')}/>
                 <TextInput placeholder="href" label="Button Link" required {...form.getInputProps('href')}/>
                 <Button type="submit" variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}}>Upload Review (Draft)</Button>
             </Group>
