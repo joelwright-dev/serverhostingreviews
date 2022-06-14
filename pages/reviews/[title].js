@@ -2,29 +2,29 @@ import React from 'react'
 import parse from 'html-react-parser'
 import { Card, Grid, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
 import Link from 'next/link'
-import prisma from '../../lib/prisma'
+// import prisma from '../../lib/prisma'
 
-export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-  const post = await prisma.review.findUnique({
-    where: {
-      id: parseInt(resolvedUrl.slice(9)),
-    },
-  });
-  return {
-    props: {},
-  };
-};
+// export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+//   const post = await prisma.review.findUnique({
+//     where: {
+//       id: parseInt(resolvedUrl.slice(9)),
+//     },
+//   });
+//   return {
+//     props: {},
+//   };
+// };
 
-const Review = (props) => {
+const Review = () => {
   const review = {
-    title: 'Shockbyte Server Hosting - A Comprehensive Review',
-    button: 'Read about Shockbyte hosting!',
-    stars: 4,
-    description: 'Shockbyte hostign has been around for blah blah and overs blah blah amount of servers, if you like hosting servers for your friends, or just want to try it out, Shockbyte is the place for you.',
+    id: 1,
+    title: 'Minecraft Server Hosting',
+    button: 'Find The Perfect Minecraft Server Host!',
+    description: "Minecraft is a sandbox game developed by Mojang which empowers player creativity and collaboration. Minecraft has been ported to multiple platforms including Windows, macOS, Linux, iOS, Android and Console. Players can join their friends on servers run using Minecraft's server tools, however paying for a cheap host may suit you better as you can run your server 24/7 and take the hastle out of all the setup.",
     colors: ['blue', 'blue'],
     body: [
       ["hero","https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg"],
-      ["title","Overview of Shockbyte Hosting"],
+      ["title","What is a Minecraft Server?"],
       ["description"],
       ["body", "Body content"],
       ["banner"],
