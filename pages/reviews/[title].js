@@ -3,12 +3,13 @@ import parse from 'html-react-parser'
 import { Card, Grid, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
 import Link from 'next/link'
 import prisma from '../../lib/prisma'
+import { useState, useEffect } from 'react'
+import Error from 'next/error'
 
 export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
   const review = await prisma.review.findFirst({
     where: {
-      id: parseInt(resolvedUrl.slice(9)),
-      public: true
+      id: parseInt(resolvedUrl.slice(9))
     },
   });
 
@@ -24,6 +25,26 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
 };
 
 const Review = ({review}) => {
+  const [user, setUser] = useState(0)
+
+  useEffect(() => {
+    try {
+        fetch('/api/auth/verify')
+        .then((res) => res.json())
+        .then((newUser) => {
+            setUser(newUser)
+        }).catch((err) => {
+            setUser(0)
+        })
+    } catch {
+        setUser(0)
+    }
+  }, [user])
+
+  if(user == 0 && !review.public) {
+    return <Error statusCode={404} />
+  }
+
   return (
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
       {

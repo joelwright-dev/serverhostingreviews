@@ -16,13 +16,10 @@ import Review from '../components/Review'
 import Logo from '../components/Logo'
 import Link from 'next/link'
 import prisma from '../lib/prisma'
+import { useEffect } from 'react'
 
 export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-  const reviews = await prisma.review.findMany({
-    where: {
-      public: true
-    }
-  });
+  const reviews = await prisma.review.findMany();
 
   return {
     props: {reviews},
@@ -30,6 +27,26 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
 };
 
 const reviews = ({reviews}) => {
+  const [user, setUser] = useState(0)
+
+  useEffect(() => {
+    try {
+        fetch('api/auth/verify')
+        .then((res) => res.json())
+        .then((newUser) => {
+            setUser(newUser)
+        }).catch((err) => {
+            setUser(0)
+        })
+    } catch {
+        setUser(0)
+    }
+  }, [user])
+
+  if(user == 0) {
+    reviews = reviews.filter(review => (review.public))
+  }
+
   return (
     <>
       <Group position="center" direction="column">

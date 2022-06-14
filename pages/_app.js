@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
       try {
-          fetch('api/auth/verify')
+          fetch('/api/auth/verify')
           .then((res) => res.json())
           .then((newUser) => {
               setUser(newUser)
