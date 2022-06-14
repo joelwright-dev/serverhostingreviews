@@ -95,7 +95,13 @@ const Layout = ({children, currentPage, user}) => {
           hidden={!opened}
           className={classes.navbar}
         >
-          <LinksDown currentPage={currentPage}/>
+          {
+            user !== 0 ? (
+              <LinksDown currentPage={currentPage} admin={true}/>
+            ) : (
+              <LinksDown currentPage={currentPage}/>
+            )
+          }
         </Navbar>
       }
     >

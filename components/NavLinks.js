@@ -121,10 +121,19 @@ const Admindata = [
 ];
   
 export function LinksDown({currentPage, admin}) {
-  const links = Pagedata.map((link) => 
-    <SideLink {...link} currentPage={currentPage} key={link.label} />
-  );
-  return <div>{links}</div>;
+  if(admin) {
+    const links = Admindata.map((link) => 
+      <SideLink {...link} currentPage={currentPage} key={link.label}/>
+    );
+
+    return <div>{links}</div>;
+  } else {
+    const links = Pagedata.map((link) => 
+      <SideLink {...link} currentPage={currentPage} key={link.label}/>
+    );
+
+    return <div>{links}</div>;
+  }
 }
 
 export function LinksAcross({currentPage, admin}) {
