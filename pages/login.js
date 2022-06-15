@@ -55,6 +55,7 @@ export default function Home (props) {
                                         id: users.id,
                                         username: user.username
                                     }
+                                    
                                     handleLogin(thisUser)
                                 } else {
                                     console.log("Incorrect password")

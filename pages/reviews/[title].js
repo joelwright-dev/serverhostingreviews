@@ -1,6 +1,7 @@
 import React from 'react'
 import parse from 'html-react-parser'
-import { Card, Grid, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
+import { Card, Grid, Switch, Affix, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
+import { useForm } from '@mantine/form'
 import Link from 'next/link'
 import prisma from '../../lib/prisma'
 import { useState, useEffect } from 'react'
@@ -22,7 +23,7 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
   return {
     props: {review},
   };
-};
+};    
 
 const Review = ({review}) => {
   const [user, setUser] = useState(0)
@@ -41,6 +42,12 @@ const Review = ({review}) => {
     }
   }, [user])
 
+  const form = useForm({
+    initialValues: {
+        public: review.public
+    },
+  });
+
   if(user == 0 && !review.public) {
     return <Error statusCode={404} />
   }
@@ -49,7 +56,18 @@ const Review = ({review}) => {
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
       {
         user !== 0 ? (
-          <>Beans</>
+          <Affix position={{ bottom: 80, right: 20 }}>
+            <Card shadow="sm" p="lg">
+              <Group>
+                <form onSubmit={form.onSubmit((values) => {
+
+                })}>
+                  <Switch color="pink" radius="sm" label="Public" {...form.getInputProps('public', { type: 'checkbox' })}/>
+                  <Button type="submit" variant="gradient" gradient={{from: "pink", to: "purple", deg: 45}} style={{ marginTop: 14 }}>Save</Button>
+                </form>
+              </Group>
+            </Card>
+          </Affix>
         ) : (
           <></>
         )
