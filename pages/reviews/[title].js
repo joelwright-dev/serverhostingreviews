@@ -48,6 +48,13 @@ const Review = ({review}) => {
   return (
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
       {
+        user !== 0 ? (
+          <>Beans</>
+        ) : (
+          <></>
+        )
+      }
+      {
         review.body.map(pageElement => {
           return pageElement[0] == "hero" ? (
             <>
