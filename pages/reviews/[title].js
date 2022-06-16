@@ -92,7 +92,7 @@ const Review = ({review}) => {
         )
       }
       {
-        review.body.map(pageElement => {
+        review.body.map((pageElement, index) => {
           const [editing, setEditing] = useState(false)
           const [value, setValue] = useState('')
           const handleChange = event => {
@@ -184,7 +184,9 @@ const Review = ({review}) => {
                     }
                     {
                       user !== 0 ? (
-                        <UnstyledButton onClick={() => setEditing(!editing)}>
+                        <UnstyledButton onClick={() => {
+                          setEditing(!editing)
+                        }}>
                           <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
                             {
                               !editing ? (
