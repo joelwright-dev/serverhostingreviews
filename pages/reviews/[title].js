@@ -1,6 +1,7 @@
 import React from 'react'
 import parse from 'html-react-parser'
-import { Card, Grid, Switch, Affix, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
+import { Card, Grid, UnstyledButton, TextInput, Switch, Affix, ThemeIcon, Space, Group, Blockquote, Text, Box, Title, Button, Image, BackgroundImage, Center } from '@mantine/core'
+import { DeviceFloppy, Pencil } from 'tabler-icons-react'
 import { useForm } from '@mantine/form'
 import Link from 'next/link'
 import prisma from '../../lib/prisma'
@@ -66,7 +67,7 @@ const Review = ({review}) => {
   }
 
   return (
-    <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
+    <div style={{width: '90%',margin: 'auto', marginTop: '1vh', marginBottom: '150px'}}>
       {
         user !== 0 ? (
           <Affix position={{ bottom: 80, right: 20 }}>
@@ -92,6 +93,12 @@ const Review = ({review}) => {
       }
       {
         review.body.map(pageElement => {
+          const [editing, setEditing] = useState(false)
+          const [value, setValue] = useState('')
+          const handleChange = event => {
+            setValue(event.target.value)
+          }
+
           return pageElement[0] == "hero" ? (
             <>
               <Box sx={{ maxHeight: 300 }} mx="auto">
@@ -118,13 +125,81 @@ const Review = ({review}) => {
           ) : (
             pageElement[0] == "title" ? (
               <>
-                <Title order={3}>{pageElement[1]}</Title>
+                <Group>
+                  {
+                    !editing ? (
+                      value !== '' ? (
+                        <Title order={3}>{value}</Title>
+                      ) : (
+                        <Title order={3}>{pageElement[1]}</Title>
+                      )
+                    ) : (
+                      value !== '' ? (
+                        <TextInput defaultValue={value} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                      ) : (
+                        <TextInput defaultValue={pageElement[1]} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                      )
+                    )
+                  }
+                  {
+                    user !== 0 ? (
+                      <UnstyledButton onClick={() => {
+                        setEditing(!editing)
+                      }}>
+                        <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
+                          {
+                            !editing ? (
+                              <Pencil size={20}/>
+                            ) : (
+                              <DeviceFloppy size={20}/>
+                            )
+                          }
+                        </ThemeIcon>
+                      </UnstyledButton>
+                    ) : (
+                      <></>
+                    )
+                  }
+                </Group>
                 <Space h="md"/>
               </>
             ) : (
               pageElement[0] == "body" ? (
                 <>
-                  <Text>{pageElement[1]}</Text>
+                  <Group>
+                    {
+                      !editing ? (
+                        value !== '' ? (
+                          <Text>{value}</Text>
+                        ) : (
+                          <Text>{pageElement[1]}</Text>
+                        )
+                      ) : (
+                        value !== '' ? (
+                          <TextInput defaultValue={value} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                        ) : (
+                          <TextInput defaultValue={pageElement[1]} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                        )
+                      )
+                    }
+                    {
+                      user !== 0 ? (
+                        <UnstyledButton onClick={() => setEditing(!editing)}>
+                          <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
+                            {
+                              !editing ? (
+                                <Pencil size={20}/>
+                              ) : (
+                                <DeviceFloppy size={20}/>
+                              )
+                            }
+                          </ThemeIcon>
+                        </UnstyledButton>
+                      ) : (
+                        <></>
+                      )
+                    }
+                  </Group>
                   <Space h="xl"/>
                 </>
               ) : (
@@ -147,9 +222,44 @@ const Review = ({review}) => {
                   </>
                 ) : (
                   pageElement[0] == "button" ? (
-                    <Button variant="gradient" gradient={{from: review.colors[0], to: review.colors[1], deg: 45}} style={{ marginTop: 14 }}>
-                        {review.button}
-                    </Button>
+                    <Group>
+                      {
+                        !editing ? (
+                          value !== '' ? (
+                            <Button variant="gradient" gradient={{from: review.colors[0], to: review.colors[1], deg: 45}} style={{ marginTop: 14 }}>
+                              {value}
+                            </Button>
+                          ) : (
+                            <Button variant="gradient" gradient={{from: review.colors[0], to: review.colors[1], deg: 45}} style={{ marginTop: 14 }}>
+                              {review.button}
+                            </Button>
+                          )
+                        ) : (
+                          value !== '' ? (
+                            <TextInput defaultValue={value} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                          ) : (
+                            <TextInput defaultValue={review.button} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                          )
+                        )
+                      }
+                      {
+                        user !== 0 ? (
+                          <UnstyledButton onClick={() => setEditing(!editing)}>
+                            <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
+                              {
+                                !editing ? (
+                                  <Pencil size={20}/>
+                                ) : (
+                                  <DeviceFloppy size={20}/>
+                                )
+                              }
+                            </ThemeIcon>
+                          </UnstyledButton>
+                        ) : (
+                          <></>
+                        )
+                      }
+                    </Group>
                   ) : (
                     pageElement[0] == 'banner' ? (
                       <>
@@ -161,7 +271,40 @@ const Review = ({review}) => {
                     ) : (
                       pageElement[0] == 'description' ? (
                         <>
-                          <Text>{review.description}</Text>
+                          <Group>
+                            {
+                              !editing ? (
+                                value !== '' ? (
+                                  <Text>{value}</Text>
+                                ) : (
+                                  <Text>{review.description}</Text>
+                                )
+                              ) : (
+                                value !== '' ? (
+                                  <TextInput defaultValue={value} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                                ) : (
+                                  <TextInput defaultValue={review.description} style={{ width: "calc(100% - 42px)" }} onChange={handleChange}/>
+                                )
+                              )
+                            }
+                            {
+                              user !== 0 ? (
+                                <UnstyledButton onClick={() => setEditing(!editing)}>
+                                  <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
+                                    {
+                                      !editing ? (
+                                        <Pencil size={20}/>
+                                      ) : (
+                                        <DeviceFloppy size={20}/>
+                                      )
+                                    }
+                                  </ThemeIcon>
+                                </UnstyledButton>
+                              ) : (
+                                <></>
+                              )
+                            }
+                          </Group>
                           <Space h="xl"/>
                         </>
                       ) : (
