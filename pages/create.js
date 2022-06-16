@@ -45,7 +45,7 @@ export default function Home (props) {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(review)
             })
-            await Router.push('reviews')
+            await router.push('reviews')
         } catch (error) {
             console.log(error)
         }

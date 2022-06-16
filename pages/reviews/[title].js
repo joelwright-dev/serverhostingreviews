@@ -52,6 +52,19 @@ const Review = ({review}) => {
     return <Error statusCode={404} />
   }
 
+  const update = async (review) => {
+    try {
+        await fetch('/api/update', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(review)
+        })
+        await router.push(`reviews/${review.id}`)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
   return (
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh'}}>
       {
@@ -60,7 +73,12 @@ const Review = ({review}) => {
             <Card shadow="sm" p="lg">
               <Group>
                 <form onSubmit={form.onSubmit((values) => {
+                  review = {
+                    id: review.id,
+                    public: values.public
+                  }
 
+                  update(review)
                 })}>
                   <Switch color="pink" radius="sm" label="Public" {...form.getInputProps('public', { type: 'checkbox' })}/>
                   <Button type="submit" variant="gradient" gradient={{from: "pink", to: "purple", deg: 45}} style={{ marginTop: 14 }}>Save</Button>
