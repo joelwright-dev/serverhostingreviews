@@ -66,6 +66,21 @@ const Review = ({review}) => {
     }
   }
 
+  const updateBody = async(changes) => {
+    try {
+      await fetch('/api/updatecontent', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({review,changes})
+      })
+      await router.push(`reviews/${review.id}`)
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  var changes = []
+
   return (
     <div style={{width: '90%',margin: 'auto', marginTop: '1vh', marginBottom: '150px'}}>
       {
@@ -144,6 +159,11 @@ const Review = ({review}) => {
                   {
                     user !== 0 ? (
                       <UnstyledButton onClick={() => {
+                        if(editing) {
+                          changes.push([pageElement[0], pageElement[1], value])
+                          updateBody(changes)
+                        }
+
                         setEditing(!editing)
                       }}>
                         <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
@@ -185,6 +205,11 @@ const Review = ({review}) => {
                     {
                       user !== 0 ? (
                         <UnstyledButton onClick={() => {
+                          if(editing) {
+                            changes.push([pageElement[0], pageElement[1], value])
+                            updateBody(changes)
+                          }
+
                           setEditing(!editing)
                         }}>
                           <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
@@ -246,7 +271,14 @@ const Review = ({review}) => {
                       }
                       {
                         user !== 0 ? (
-                          <UnstyledButton onClick={() => setEditing(!editing)}>
+                          <UnstyledButton onClick={() => {
+                            if(editing) {
+                              changes.push([pageElement[0], review.button, value])
+                              updateBody(changes)
+                            }
+
+                            setEditing(!editing)
+                          }}>
                             <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
                               {
                                 !editing ? (
@@ -291,7 +323,14 @@ const Review = ({review}) => {
                             }
                             {
                               user !== 0 ? (
-                                <UnstyledButton onClick={() => setEditing(!editing)}>
+                                <UnstyledButton onClick={() => {
+                                  if(editing) {
+                                    changes.push([pageElement[0], review.description, value])
+                                    updateBody(changes)
+                                  }
+
+                                  setEditing(!editing)
+                                }}>
                                   <ThemeIcon variant="gradient" gradient={{ from: 'purple', to: 'pink' }}>
                                     {
                                       !editing ? (
