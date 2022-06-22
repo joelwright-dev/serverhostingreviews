@@ -127,10 +127,10 @@
   "resolved" "https://registry.npmjs.org/@mantine/form/-/form-4.2.8.tgz"
   "version" "4.2.8"
 
-"@mantine/hooks@4.2.8":
-  "integrity" "sha512-CZYATDBlEEazl5XsS4bpgHe9auIxgRAnshw5GL0maOE3gKiYUFuvNGbJe6wlhqIOHUyW/Bk6vKZJPbLs39iw/A=="
-  "resolved" "https://registry.npmjs.org/@mantine/hooks/-/hooks-4.2.8.tgz"
-  "version" "4.2.8"
+"@mantine/hooks@^4.2.10", "@mantine/hooks@4.2.8":
+  "integrity" "sha512-gVYWeE4Ieu6FBwh9h/3FjcrrNzKx1k6Yw07/LSngJP0uT3fLt1gvY2p4PtPpOh7z2/RpTXBR1x+dOgEUKomYUQ=="
+  "resolved" "https://registry.npmjs.org/@mantine/hooks/-/hooks-4.2.10.tgz"
+  "version" "4.2.10"
 
 "@mantine/styles@4.2.8":
   "integrity" "sha512-e7/EzzUqvwA90pwYjKd3rfIi2AUrInZv5H1Q3HOfaXZH+RkNQzovq558DRtHIR34v9yhVi6nMrTUO2PPf4CNig=="
