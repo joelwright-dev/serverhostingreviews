@@ -26,7 +26,7 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
   };
 };
 
-const reviews = ({reviews}) => {
+export default function Reviews({reviews}) {
   const [user, setUser] = useState(0)
 
   useEffect(() => {
@@ -82,5 +82,3 @@ const reviews = ({reviews}) => {
     </>
   )
 }
-
-export default reviews

@@ -18,7 +18,7 @@ export default function Game(props) {
     return (
         <Card shadow="sm" p="lg" style={{height:'100%'}}>
             <Card.Section>
-                <Image src={props.img} alt={props.alt} height={200}/>
+                <Image src={props.img} alt={props.alt} height={300}/>
             </Card.Section>
             <Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
                 <Text weight={500}>{props.title}</Text>
