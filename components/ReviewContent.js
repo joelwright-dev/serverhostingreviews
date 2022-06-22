@@ -318,9 +318,9 @@ export default function ReviewContent(props) {
                                                     <thead>
                                                         <tr>
                                                             {
-                                                                pageElement[1][1].map((header) => {
+                                                                pageElement[1][1].map((header,index) => {
                                                                     return (
-                                                                        <th>{header}</th>
+                                                                        <th key={index}>{header}</th>
                                                                     )
                                                                 })
                                                             }
@@ -328,23 +328,23 @@ export default function ReviewContent(props) {
                                                     </thead>
                                                     <tbody>
                                                         {
-                                                            pageElement[2][1].map((header) => {
+                                                            pageElement[2][1].map((header,index) => {
                                                                 return (
-                                                                    <tr>
+                                                                    <tr key={index}>
                                                                         {
-                                                                            header.map((element) => {
+                                                                            header.map((element,index) => {
                                                                                 return (
                                                                                     element == "y" ? (
-                                                                                        <td>
+                                                                                        <td key={index}>
                                                                                             <Check stroke="green" strokeWidth={3} size={20}/>
                                                                                         </td>
                                                                                     ) : (
                                                                                         element == "n" ? (
-                                                                                            <td>
+                                                                                            <td key={index}>
                                                                                                 <X stroke="red" strokeWidth={3} size={20}/>
                                                                                             </td>
                                                                                         ) : (
-                                                                                            <td>{element}</td>
+                                                                                            <td key={index}>{element}</td>
                                                                                         )
                                                                                     )
                                                                                 )

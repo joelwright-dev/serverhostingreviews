@@ -93,10 +93,8 @@ const Review = ({review}) => {
         )
       }
       {
-        review.body.map(pageElement => (
-          <>
-            <ReviewContent pageElement={pageElement} review={review} user={user}/>
-          </>
+        review.body.map((pageElement, index) => (
+          <ReviewContent pageElement={pageElement} review={review} user={user} key={index}/>
         ))
       }
     </div>
