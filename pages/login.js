@@ -28,8 +28,6 @@ export default function Home (props) {
 
     const handleLogin = async (user) => {
         const authenticated = await axios.post('/api/auth/login', user)
-        
-        console.log(authenticated)
 
         if(authenticated.status == 200) {
             router.push('create')

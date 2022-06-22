@@ -149,16 +149,16 @@ export default function ReviewContent(props) {
                     pageElement[0] == "reviews" ? (
                         <>
                             <Grid columns={pageElement[1].length*3}>
-                                {pageElement[1].map(review => {
-                                return (
-                                    <Grid.Col span={3}>
-                                    <Card shadow="sm" p="lg" style={{height:'100%'}}>
-                                        <Blockquote cite={`– ${review[1]}`}>
-                                        {review[0]}
-                                        </Blockquote>
-                                    </Card>
-                                    </Grid.Col>
-                                )
+                                {pageElement[1].map((review, index) => {
+                                    return (
+                                        <Grid.Col span={3} key={index}>
+                                            <Card shadow="sm" p="lg" style={{height:'100%'}}>
+                                                <Blockquote cite={`– ${review[1]}`}>
+                                                {review[0]}
+                                                </Blockquote>
+                                            </Card>
+                                        </Grid.Col>
+                                    )
                                 })}
                             </Grid>
                             <Space h="xl"/>

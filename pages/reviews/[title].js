@@ -8,8 +8,6 @@ import Error from 'next/error'
 import ReviewContent from '../../components/ReviewContent'
 
 export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
-  console.log(resolvedUrl.slice(9).replaceAll("-", " "))
-  
   const review = await prisma.review.findFirst({
     where: {
       title: resolvedUrl.slice(9).replaceAll("-", " ")
