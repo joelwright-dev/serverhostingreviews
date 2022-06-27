@@ -18,7 +18,7 @@ import Link from 'next/link'
 import prisma from '../lib/prisma'
 import { useEffect } from 'react'
 
-export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+export async function getStaticProps (context) {
   const reviews = await prisma.review.findMany();
 
   return {

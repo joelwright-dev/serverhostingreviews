@@ -7,10 +7,20 @@ import { useState, useEffect } from 'react'
 import Error from 'next/error'
 import ReviewContent from '../../components/ReviewContent'
 
-export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
+export const getStaticPaths = async () => {
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
+
+export async function getStaticProps (context) {
+  const { params } = context
+  const title = params.title
+
   const review = await prisma.review.findFirst({
     where: {
-      title: resolvedUrl.slice(9).replaceAll("-", " ")
+      title: title.replaceAll("-", " ")
     },
   });
 
