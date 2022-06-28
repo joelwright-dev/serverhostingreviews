@@ -14,7 +14,7 @@ model Review {
   id Int @id @default(autoincrement())
   public Boolean @default(false)
   title String @unique
-  description String
+  description String @db.Text
   button String
   stars Int
   colors Json
