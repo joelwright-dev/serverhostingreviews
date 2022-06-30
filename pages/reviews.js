@@ -18,11 +18,12 @@ import Link from 'next/link'
 import prisma from '../lib/prisma'
 import { useEffect } from 'react'
 
-export async function getServerSideProps (context) {
+export async function getStaticProps (context) {
   const reviews = await prisma.review.findMany();
 
   return {
     props: {reviews},
+    revalidate: 10
   };
 };
 

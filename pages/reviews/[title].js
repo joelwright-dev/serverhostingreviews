@@ -7,14 +7,14 @@ import { useState, useEffect } from 'react'
 import Error from 'next/error'
 import ReviewContent from '../../components/ReviewContent'
 
-// export const getStaticPaths = async () => {
-//   return {
-//       paths: [], //indicates that no page needs be created at build time
-//       fallback: 'blocking' //indicates the type of fallback
-//   }
-// }
+export const getStaticPaths = async () => {
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
 
-export async function getServerSideProps (context) {
+export async function getStaticProps (context) {
   const { params } = context
   const title = params.title
 
@@ -32,6 +32,7 @@ export async function getServerSideProps (context) {
 
   return {
     props: {review},
+    revalidate: 10
   };
 };    
 
