@@ -50,9 +50,9 @@ export default function ReviewContent(props) {
                             </Title>
                         </Center>
                     </BackgroundImage>
-                    </Box>
-                    <Space h="xl"/>
-                </>
+                </Box>
+                <Space h="xl"/>
+            </>
             ) : (
                 pageElement[0] == "title" ? (
                     <>
