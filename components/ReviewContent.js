@@ -363,7 +363,7 @@ export default function ReviewContent(props) {
                                         pageElement[0] == 'image' ? (
                                             <>
                                                 <Card shadow="sm" p="lg">
-                                                    <Image src={pageElement[1]} style={{maxWidth:'800px', margin: 'auto'}}/>
+                                                    <Image src={pageElement[1]} height={250} fit="contain" style={{maxWidth:'800px', margin: 'auto'}}/>
                                                 </Card>
                                                 <Space h="xl"/>
                                             </>
