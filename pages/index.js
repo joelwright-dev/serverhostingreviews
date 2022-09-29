@@ -15,7 +15,7 @@ import {
 import Game from '../components/Game'
 import Logo from '../components/Logo'
 import Link from 'next/link'
-import Meta from '../components/Meta'
+import Head from 'next/head'
 
 export default function Home() {
   const theme = useMantineTheme();
@@ -23,9 +23,9 @@ export default function Home() {
 
   return (
     <>
-      <head>
+      <Head>
         <meta name="description" content="Server Hosting Reviews is your one stop shop for server hosting reviews and deals. Find the best server hosts for your gaming needs with all the information you need."/>
-      </head>
+      </Head>
       <Group position="center" direction="column">
         <Center style={{ width: '100%', height: "calc(100vh - 150px)"}}>
           <Group direction="column" position="center">
