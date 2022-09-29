@@ -23,7 +23,9 @@ export default function Home() {
 
   return (
     <>
-      <Meta description="Server Hosting Reviews is your one stop shop for server hosting reviews and deals. Find the best server hosts for your gaming needs with all the information you need."/>
+      <head>
+        <meta description="Server Hosting Reviews is your one stop shop for server hosting reviews and deals. Find the best server hosts for your gaming needs with all the information you need."/>
+      </head>
       <Group position="center" direction="column">
         <Center style={{ width: '100%', height: "calc(100vh - 150px)"}}>
           <Group direction="column" position="center">
@@ -56,7 +58,7 @@ export default function Home() {
               badge="Most Popular"
               description="Minecraft server hosting needs to be reliable so you and your friends can play together 24/7! Get the best Minecraft server host now!"
               button="Order Your Minecraft Server!"
-              href="reviews/minecraft"
+              href="reviews/best-minecraft-server-hosting-(2022-ranked)"
             />
           </Grid.Col>
           <Grid.Col md={6} lg={4}>
@@ -66,7 +68,7 @@ export default function Home() {
               title="Terraria"
               description="Terraria server hosting needs to meet your fit, find out what server host allows you to install the latest tModLoader mods for you and your friends!"
               button="Order Your Terraria Server!"
-              href="reviews/terraria"
+              href="reviews/best-terraria-server-hosting-(2022-ranked)"
             />
           </Grid.Col>
           <Grid.Col md={6} lg={4}>
@@ -76,7 +78,7 @@ export default function Home() {
               title="ARK: Survival Evolved"
               description="ARK servers with support for Expansion Packs, DLC Maps, Custom Maps and Steam Workshop mods!"
               button="Order Your ARK Server!"
-              href="reviews/ark-survival-evolved"
+              href="reviews/best-ark-survival-evolved-server-hosts-(2022-ranked)"
             />
           </Grid.Col>
           <Grid.Col md={6} lg={4}>
@@ -86,7 +88,7 @@ export default function Home() {
               title="Garry's Mod"
               description="Garry's Mod servers need workshop support and lots of performance! We wouldn't want your server crashing every time you drop a H-Bomb!"
               button="Order Your Garry's Mod Server!"
-              href="reviews/garrys-mod"
+              href="reviews/best-garry's-mod-server-hosting-(2022-ranked)"
             />
           </Grid.Col>
           <Grid.Col md={6} lg={4}>
@@ -96,7 +98,7 @@ export default function Home() {
               title="Rust"
               description="Rust servers with full support for Oxide plugins and 100s of players!"
               button="Order Your Rust Server!"
-              href="reviews/rust"
+              href="reviews/best-rust-server-hosting-(2022-ranked)"
             />
           </Grid.Col>
           <Grid.Col md={6} lg={4}>
@@ -106,7 +108,7 @@ export default function Home() {
               title="Counter-Strike: Global Offensive"
               description="CS:GO servers with support for SourceMod and Metamod! Get a server to surf on or just have fun on a workshop map with your mates."
               button="Order Your CS:GO Server!"
-              href="reviews/csgo"
+              href="reviews/best-cs:go-server-hosts-(2022-ranked)"
             />
           </Grid.Col>
         </Grid>
