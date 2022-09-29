@@ -4,7 +4,7 @@ import { Title, Text, Group, Image, Button, Box, BackgroundImage, Center, Space 
 const about = () => {
   return (
     <>
-      <Box sx={{ maxHeight: 300 }} mx="auto">
+      <Box sx={{ maxHeight: 300 }} style={{width: '90%'}} mx="auto">
           <BackgroundImage src="/about.jpg" style={{height:'300px'}} radius={10}>
               <Center style={{ width: '100%', height: '100%', padding: '50px', background: 'rgba(0,0,0,0.5)', borderRadius: 10 }}>
                   <Title order={1} align="center">
@@ -24,7 +24,7 @@ const about = () => {
           </BackgroundImage>
       </Box>
       <Space h="xl"/>
-      <Text>
+      <Text style={{width: '90%'}} mx="auto">
         I could start by telling you what this site is and why you should support it but I&apos;m sure you&apos;ve been told that numerous times by countless other sites, so let&apos;s talk about me.
         <Space h="sm"/>
         My name is Joel Wright, since the age of 13 I&apos;ve had an innate passion for the IT space. It started with Python. More specifically, silly art using the Turtle library. Once I&apos;d had my fun with graphics in Turtle, I found pygame, a library for creating video games with Python. Like every kid, I loved video games, and naturally, being at the start of my IT journey, wanted to make them. I spent hours and hours of my holidays learning Unity and Unreal Engine, trying to create scary horror games which just ended up goofy, shriveled up like a piece of paper, and thrown in the bin. It was fun though.
