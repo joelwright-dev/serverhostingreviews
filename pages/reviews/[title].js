@@ -6,6 +6,7 @@ import prisma from '../../lib/prisma'
 import { useState, useEffect } from 'react'
 import Error from 'next/error'
 import ReviewContent from '../../components/ReviewContent'
+import Meta from '../../components/Meta'
 
 export const getStaticPaths = async () => {
   return {
@@ -77,7 +78,9 @@ const Review = ({review}) => {
   }
 
   return (
-    <div style={{width: '90%',margin: 'auto', marginTop: '1vh', marginBottom: '150px'}}>
+    <>
+      <Meta keywords={"server hosting reviews 2022 list gaming game " + review.title} description={review.description}/>
+      <div style={{width: '90%',margin: 'auto', marginTop: '1vh', marginBottom: '150px'}}>
       {
         user !== 0 ? (
           <Affix position={{ bottom: 80, right: 20 }}>
@@ -107,6 +110,7 @@ const Review = ({review}) => {
         ))
       }
     </div>
+  </>
   )
 }
 

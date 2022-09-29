@@ -17,6 +17,7 @@ import Logo from '../components/Logo'
 import Link from 'next/link'
 import prisma from '../lib/prisma'
 import { useEffect } from 'react'
+import Meta from '../components/Meta';
 
 export async function getStaticProps (context) {
   const reviews = await prisma.review.findMany();
@@ -50,6 +51,7 @@ export default function Reviews({reviews}) {
 
   return (
     <>
+      <Meta keywords="server hosting reviews minecraft terraria ark csgo rust 2022 list gaming game" description="Find the review that's right for you. Find reviews for Minecraft, Garry's Mod, Terraria, Ark: Survival Evolved, CS:GO and Rust."/>
       <Group position="center" direction="column">
         <Space h="xl"/>
         <Group direction="column" position="center">

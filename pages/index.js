@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <Meta description="Server Hosting Reviews is your one stop shop for server hosting reviews and deals. Find the best server hosts for your gaming needs with all the information you need."/>
+      <Meta keywords="server hosting reviews minecraft terraria ark csgo rust 2022 list gaming game" description="Server Hosting Reviews is your one stop shop for server hosting reviews and deals. Find the best server hosts for your gaming needs with all the information you need."/>
       <Group position="center" direction="column">
         <Center style={{ width: '100%', height: "calc(100vh - 150px)"}}>
           <Group direction="column" position="center">
