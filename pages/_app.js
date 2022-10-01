@@ -11,18 +11,34 @@ export default function App({ Component, pageProps }) {
   const [user, setUser] = useState(0)
 
   useEffect(() => {
-      try {
-          fetch('/api/auth/verify')
-          .then((res) => res.json())
-          .then((newUser) => {
-              setUser(newUser)
-          }).catch((err) => {
-              setUser(0)
-          })
-      } catch {
-          setUser(0)
-      }
-  }, [user])
+    try {
+        fetch('/api/auth/verify')
+        .then((res) => res.json())
+        .then((newUser) => {
+            setUser(newUser)
+        }).catch((err) => {
+            setUser(0)
+        })
+    } catch {
+        setUser(0)
+    }
+
+    const handleRouteChange = (url) => {
+      console.log("page changed")
+      window.gtag('config', 'G-XZGLFXGDDW', {
+        page_path: url
+      })
+    }
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [user, router.events])
 
   return (
     <>
