@@ -35,7 +35,7 @@ export async function getStaticProps (context) {
     props: {review},
     revalidate: 10
   };
-};    
+};
 
 const Review = ({review}) => {
   const [user, setUser] = useState(0)
