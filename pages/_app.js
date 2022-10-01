@@ -4,6 +4,7 @@ import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core
 import { useLocalStorage } from '@mantine/hooks'
 import { useEffect, useState } from 'react';
 import {useRouter} from 'next/router';
+import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
@@ -26,6 +27,15 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Meta/>
+      <Script strategy='afterInteractive' src="https://www.googletagmanager.com/gtag/js?id=G-XZGLFXGDDW"/>
+      <Script id='google-analytics' strategy='afterInteractive'>
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XZGLFXGDDW');
+        `}
+      </Script>
       <ColorSchemeProvider>
         <MantineProvider
           withGlobalStyles

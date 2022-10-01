@@ -375,13 +375,23 @@ export default function ReviewContent(props) {
                                                             !editing ? (
                                                                 value !== '' ? (
                                                                     <Link href={pageElement[2]}>
-                                                                        <Button variant="gradient" gradient={{ from: 'purple', to: 'pink' }} style={{ marginTop: 14 }}>
+                                                                        <Button onClick={() => {
+                                                                            window.gtag('event', 'Affiliate Link Clicked', {
+                                                                                page: review.title,
+                                                                                link: pageElement[2]
+                                                                            })
+                                                                        }} variant="gradient" gradient={{ from: 'purple', to: 'pink' }} style={{ marginTop: 14 }}>
                                                                             {value}
                                                                         </Button>
                                                                     </Link>
                                                                 ) : (
                                                                     <Link href={pageElement[2]}>
-                                                                        <Button variant="gradient" gradient={{ from: 'purple', to: 'pink' }} style={{ marginTop: 14 }}>
+                                                                        <Button onClick={() => {
+                                                                            window.gtag('event', 'affiliate_link_clicked', {
+                                                                                page: review.title,
+                                                                                link: pageElement[2]
+                                                                            })
+                                                                        }} variant="gradient" gradient={{ from: 'purple', to: 'pink' }} style={{ marginTop: 14 }}>
                                                                             {pageElement[1]}
                                                                         </Button>
                                                                     </Link>
