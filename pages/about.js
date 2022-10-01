@@ -1,9 +1,11 @@
 import React from 'react'
 import { Title, Text, Group, Image, Button, Box, BackgroundImage, Center, Space } from '@mantine/core'
+import Meta from '../components/Meta'
 
 const about = () => {
   return (
     <>
+      <Meta title={`Server Hosting Reviews - About`}/>
       <Box sx={{ maxHeight: 300 }} style={{width: '90%'}} mx="auto">
           <BackgroundImage src="/about.jpg" style={{height:'300px'}} radius={10}>
               <Center style={{ width: '100%', height: '100%', padding: '50px', background: 'rgba(0,0,0,0.5)', borderRadius: 10 }}>
