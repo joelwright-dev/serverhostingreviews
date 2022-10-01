@@ -1,5 +1,11 @@
 # *
 User-agent: *
+Disallow: /login
+Disallow: /create
+Disallow: /logout
+
+# *
+User-agent: *
 Allow: /
 
 # Host
@@ -7,3 +13,4 @@ Host: https://www.serverhostingreviews.com
 
 # Sitemaps
 Sitemap: https://www.serverhostingreviews.com/sitemap.xml
+Sitemap: https://www.serverhostingreviews.com/server-sitemap.xml

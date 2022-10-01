@@ -2,8 +2,7 @@
 module.exports = {
     siteUrl: process.env.SITE_URL || 'https://www.serverhostingreviews.com',
     generateRobotsTxt: true, // (optional)
-    outDir: "./out",
-    exclude: ['/login','/create','/logout'],
+    exclude: ['/login','/create','/logout','/server-sitemap.xml'],
     robotsTxtOptions: {
         policies: [
             {
@@ -15,8 +14,7 @@ module.exports = {
             },
         ],
         additionalSitemaps: [
-            `https://www.serverhostingreviews.com/sitemap.xml`,
-            `https://www.serverhostingreviews.com/server-sitemap.xml`,
+            'https://www.serverhostingreviews.com/server-sitemap.xml'
         ],
     },
     // ...other options
