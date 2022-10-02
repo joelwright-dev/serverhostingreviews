@@ -15,7 +15,7 @@ model Review {
   public Boolean @default(false)
   title String @unique
   description String @db.Text
-  seodescription String @db.Text
+  seodescription String @db.Text @default("")
   button String
   stars Int
   colors Json
