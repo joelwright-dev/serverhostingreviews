@@ -79,7 +79,7 @@ const Review = ({review}) => {
 
   return (
     <>
-      <Meta title={`Server Hosting Reviews - ${review.title}`} keywords={"server hosting reviews 2022 list gaming game " + review.title} description={review.seodescription}/>
+      <Meta title={`Server Hosting Reviews - ${review.title}`} keywords={"server hosting reviews 2022 list gaming game " + review.title} description={review.description}/>
       <div style={{width: '90%',margin: 'auto', marginTop: '1vh', marginBottom: '150px'}}>
       {
         user !== 0 ? (
