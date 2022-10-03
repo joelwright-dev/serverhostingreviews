@@ -1,4 +1,4 @@
-import { Button, Center, NumberInput, JsonInput, TextInput, Textarea, Group, Tabs, Card } from '@mantine/core'
+import { Button, Center, NumberInput, JsonInput, TextInput, Textarea, Group, Tabs, Card, Switch } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { createHash } from 'crypto'
 // import { PrismaClient } from '@prisma/client'
@@ -27,6 +27,7 @@ export default function Home (props) {
 
     const form = useForm({
         initialValues: {
+            review: true,
             title: '',
             button: '',
             description: '',
@@ -55,6 +56,7 @@ export default function Home (props) {
         user ? (
             <form onSubmit={form.onSubmit((values) => {
                 const review = {
+                    review: values.review,
                     title: values.title,
                     button: values.button,
                     description: values.description,
@@ -78,6 +80,7 @@ export default function Home (props) {
                     <JsonInput label="Body" placeholder="[[Type, Content]]" validationError="Invalid JSON" formatOnBlur autosize minRows={3} required {...form.getInputProps('body')}/>
                     <JsonInput label="Banner" placeholder="[Affiliate Link, Image Source]" validationError="Invalid JSON" formatOnBlur autosize minRows={1} required {...form.getInputProps('banner')}/>
                     <TextInput placeholder="href" label="Button Link" required {...form.getInputProps('href')}/>
+                    <Switch label="Review (Off is Article)" color="pink" radius="sm" {...form.getInputProps('review', { type: 'checkbox' })}/>
                     <Button type="submit" variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}}>Upload Review (Draft)</Button>
                 </Group>
             </form>

@@ -18,6 +18,7 @@ export default async function handler(req, res) {
       prisma.review.create({
         data: {
           title: review.title,
+          review: review.review,
           description: review.description,
           button: review.button,
           stars: review.stars,

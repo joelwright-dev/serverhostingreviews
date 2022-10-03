@@ -13,6 +13,7 @@ generator client {
 model Review {
   id Int @id @default(autoincrement())
   public Boolean @default(false)
+  review Boolean @default(true)
   title String @unique
   description String @db.Text
   seodescription String @db.Text @default("")

@@ -51,7 +51,7 @@ export default function Reviews({reviews}) {
 
   return (
     <>
-      <Meta title={`Server Hosting Reviews - Reviews`} keywords="server hosting reviews minecraft terraria ark csgo rust 2022 list gaming game" description="Find the review that's right for you. Find reviews for Minecraft, Garry's Mod, Terraria, Ark: Survival Evolved, CS:GO and Rust."/>
+      <Meta title={`Server Hosting Reviews - Articles`} keywords="server hosting reviews minecraft terraria ark csgo rust 2022 list gaming game articles questions answers" description="Find answers for questions related to server hosting for games like Minecraft and Rust and general information."/>
       <Group position="center" direction="column">
         <Space h="xl"/>
         <Group direction="column" position="center">
@@ -65,14 +65,14 @@ export default function Reviews({reviews}) {
               weight={700}
               style={{ fontFamily: 'Greycliff CF, sans-serif' }}
             >
-              Game Server Hosting Service Reviews and Reports
+              Server Hosting Articles and Tutorials
             </Text>
           </Title>
-          <Text align="center">Are you looking to host a game server for you and your friends? Look no further.</Text>
+          <Text align="center">Are you looking for an answer to a query or question you have about server hosting? Look through my articles!</Text>
         </Group> 
         <Grid style={{width: '90%'}} columns={2}>
           {reviews.map((review, index) => {
-            if(review.review == true) {
+            if(review.review == false) {
               return (
                 <Grid.Col md={2} lg={1}  style={{ minHeight: 120 }} key={index}>
                   <Review

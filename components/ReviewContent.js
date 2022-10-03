@@ -16,7 +16,7 @@ export default function ReviewContent(props) {
 
     const updateBody = async(changes) => {
         try {
-            await fetch('/api/updatecontent', {
+            await fetch('localhost:3000/api/updatecontent', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({review,changes})

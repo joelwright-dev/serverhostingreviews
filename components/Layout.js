@@ -1,6 +1,6 @@
 import Meta from './Meta'
 import { Sun, MoonStars } from 'tabler-icons-react';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createStyles,
   MantineProvider,
@@ -15,11 +15,13 @@ import {
   useMantineColorScheme,
   useMantineTheme,
   Group,
-  Button
+  Button,
+  Select
 } from "@mantine/core";
 import { Title } from '@mantine/core'
 import { LinksDown, LinksAcross } from './NavLinks'
 import Logo from './Logo'
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -47,8 +49,8 @@ const Layout = ({children, currentPage, user}) => {
     <AppShell
       fixed
       footer={
-        <Footer height={60} p="md">
-          <Group position="apart">
+        <Footer height={60}>
+          <Group position="apart" p="md">
             <Text
               variant="gradient"
               gradient={{ from: 'purple', to: 'pink', deg: 45 }}

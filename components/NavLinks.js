@@ -2,7 +2,7 @@ import React from 'react';
 import { Wallet, Exchange, Apps, Download, Home, AlertCircle, Messages } from 'tabler-icons-react';
 import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
 import Link from 'next/link'
-import { Book2, InfoCircle } from 'tabler-icons-react';
+import { Book2, InfoCircle, Pencil } from 'tabler-icons-react';
 
 function SideLink({ icon, color, label, href, currentPage }) {
   const css = `
@@ -110,12 +110,14 @@ const Pagedata = [
     { icon: <Home size={16} />, color: 'blue', label: 'Home', href: '' },
     { icon: <InfoCircle size={16} />, color: 'teal', label: 'About', href: 'about' },
     { icon: <Book2 size={16} />, color: 'violet', label: 'Reviews', href: 'reviews' },
+    { icon: <Pencil size={16} />, color: 'pink', label: 'Articles', href: 'articles' },
 ];
 
 const Admindata = [
   { icon: <Home size={16} />, color: 'blue', label: 'Home', href: '' },
   { icon: <InfoCircle size={16} />, color: 'teal', label: 'About', href: 'about' },
   { icon: <Book2 size={16} />, color: 'violet', label: 'Reviews', href: 'reviews' },
+  { icon: <Pencil size={16} />, color: 'pink', label: 'Articles', href: 'articles' },
   { icon: <Book2 size={16} />, color: 'violet', label: 'Create', href: 'create' },
   { icon: <Book2 size={16} />, color: 'violet', label: 'Logout', href: 'logout' },
 ];

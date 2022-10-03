@@ -33,11 +33,21 @@ export default function Game(props) {
             <Text size="sm" lineClamp={1} style={{ lineHeight: 1.5 }}>
                 {props.review.description}
             </Text>
-            <Link href={`reviews/${props.review.title.replaceAll(" ", "-").toLowerCase()}`}>
-                <Button variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}} fullWidth style={{ marginTop: 14 }}>
-                    {props.review.button}
-                </Button>
-            </Link>
+            {
+                props.review.review ? (
+                    <Link href={`reviews/${props.review.title.replaceAll(" ", "-").toLowerCase()}`}>
+                        <Button variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}} fullWidth style={{ marginTop: 14 }}>
+                            {props.review.button}
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link href={`articles/${props.review.title.replaceAll(" ", "-").toLowerCase()}`}>
+                        <Button variant="gradient" gradient={{from: 'purple', to: 'pink', deg: 45}} fullWidth style={{ marginTop: 14 }}>
+                            {props.review.button}
+                        </Button>
+                    </Link>
+                )
+            }
         </Card>
     )
 }

@@ -11,7 +11,7 @@ export default function Home (props) {
     const router = useRouter()
 
     useEffect(() => {
-        fetch('api/users').then(
+        fetch('/api/users').then(
             (res) => res.json())
             .then((user) => {
                 setUsers(user)
