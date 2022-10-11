@@ -3,6 +3,12 @@ User-agent: *
 Disallow: /login
 Disallow: /create
 Disallow: /logout
+Disallow: /csgo
+Disallow: /rust
+Disallow: /garrys-mod
+Disallow: /minecraft
+Disallow: /ark
+Disallow: /terraria
 
 # *
 User-agent: *
