@@ -50,7 +50,7 @@ export default function Home() {
         <Grid style={{width: '90%'}}>
           <Grid.Col md={6} lg={4}  style={{ minHeight: 120 }}>
             <Game
-              img="https://i.insider.com/627a982fc1076b00183d48a5?width=700"
+              img="https://www.minecraft.net/content/dam/games/minecraft/key-art/Xbox_Minecraft_WildUpdate_Main_.Net_1170x500.jpg"
               alt="Minecraft Server Hosting"
               title="Minecraft"
               badge="Most Popular"
