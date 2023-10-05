@@ -435,7 +435,7 @@ export default function ReviewContent(props) {
                                                 </>
                                             ) : (
                                                 pageElement[0] == 'url' ? 
-                                        <a href={pageElement[1]}>pageElement[2]</a>: (<></>)
+                                        <a href={pageElement[1]}>{pageElement[2]}</a>: (<></>)
                                             )
                                         )
                                     )
